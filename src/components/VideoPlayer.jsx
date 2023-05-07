@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { IconPlayerPauseFilled, IconLoader2, IconPlayerPlayFilled, IconVolume, IconArrowsMaximize, IconSettings, IconDownload, IconRepeat, IconArrowsMinimize, IconRepeatOff} from '@tabler/icons-react';
-import { SwitchButton } from "./Button.jsx";
-import { Tooltip } from "../components/Tooltip.jsx"
-import { VideoProgressBar } from "../components/VideoProgressBar.jsx" 
+import { SwitchButton } from "/src/components/Button.jsx";
+import { Tooltip } from "/src/components/Tooltip.jsx"
+import { VideoProgressBar } from "/src/components/VideoProgressBar.jsx" 
 // TODO
 // PLEASE ADD KEYBOARD CONTROL
 // PLEASE CREATE CUSTOM HOOKS FOR VIDEO REFERENCE

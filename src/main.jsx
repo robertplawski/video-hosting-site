@@ -4,9 +4,9 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import App from './routes/App.jsx'
-import VideoPlayer from './components/VideoPlayer.jsx'
-import './index.css'
+import App from '/src/routes/App.jsx'
+import VideoPlayer from '/src/components/VideoPlayer.jsx'
+import '/src/index.css'
 
 const router = createBrowserRouter([
   {

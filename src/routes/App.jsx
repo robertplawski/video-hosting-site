@@ -1,4 +1,4 @@
-import VideoPlayer from "../components/VideoPlayer.jsx"
+import VideoPlayer from "/src/components/VideoPlayer.jsx"
 
 function App() {
   return (
