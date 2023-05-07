@@ -155,7 +155,7 @@ function VideoPlayer(props) {
         <VideoProgressBar currentTimestamp={currentTimestamp}  duration={duration} videoRef = {videoRef} />
         <div className="text-white w-full gap-4 px-4 py-2 flex items-center text-sm">
           <Tooltip caption="Play">
-            <SwitchButton className="bg-blue-500 p-1 rounded-2xl" onClick={playPause} statement={isPaused} enabledIcon = <IconPlayerPlayFilled/> disabledIcon = <IconPlayerPauseFilled/> />
+            <SwitchButton className="bg-blue-500 p-1 rounded-2xl" onClick={playPause} statement={isPaused} enabledIcon = {<IconPlayerPlayFilled/>} disabledIcon = {<IconPlayerPauseFilled/>} />
           </Tooltip>
           <div className="group/volume flex gap-2 flex justify-center items-center">
             <Tooltip caption="Volume">
@@ -169,10 +169,10 @@ function VideoPlayer(props) {
           <div className="flex flex-1"/>
 
           <Tooltip caption="Loop">
-            <SwitchButton onClick={toggleLoop} statement={isLooping} enabledIcon = <IconRepeat/> disabledIcon = <IconRepeatOff/> />
+            <SwitchButton onClick={toggleLoop} statement={isLooping} enabledIcon = {<IconRepeat/>} disabledIcon = {<IconRepeatOff/>} />
           </Tooltip>
           <Tooltip caption="Fullscreen">
-            <SwitchButton onClick={toggleFullscreen} statement={isFullscreen} enabledIcon = <IconArrowsMinimize/> disabledIcon = <IconArrowsMaximize/>/>
+            <SwitchButton onClick={toggleFullscreen} statement={isFullscreen} enabledIcon = {<IconArrowsMinimize/>} disabledIcon = {<IconArrowsMaximize/>}/>
           </Tooltip>
         </div>
       </div>
