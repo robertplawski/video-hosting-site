@@ -2,53 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { IconPlayerPauseFilled, IconLoader2, IconPlayerPlayFilled, IconVolume, IconArrowsMaximize, IconSettings, IconDownload, IconRepeat, IconArrowsMinimize, IconRepeatOff} from '@tabler/icons-react';
 import { SwitchButton } from "/src/components/Button.jsx";
 import { Tooltip } from "/src/components/Tooltip.jsx"
-import { VideoProgressBar } from "/src/components/VideoProgressBar.jsx" 
+import { VideoProgressBar } from "/src/components/VideoProgressBar.jsx"
+import { useFullscreenStatus } from "/src/hooks/FullscreenHook.jsx";
 // TODO
 // PLEASE ADD KEYBOARD CONTROL
 // PLEASE CREATE CUSTOM HOOKS FOR VIDEO REFERENCE
 // CREATE OTHER FILE FOR CONTEXT MENU
-
-function useFullscreenStatus(elRef) {
-  const [isFullscreen, setIsFullscreen] = useState(
-    document[getBrowserFullscreenElementProp()] != null
-  );
-
-  const setFullscreen = () => {
-    if (elRef.current == null) return;
-
-    elRef.current
-      .requestFullscreen()
-      .then(() => {
-        setIsFullscreen(document[getBrowserFullscreenElementProp()] != null);
-      })
-      .catch(() => {
-        setIsFullscreen(false);
-      });
-  };
-
-  React.useLayoutEffect(() => {
-    document.onfullscreenchange = () =>
-      setIsFullscreen(document[getBrowserFullscreenElementProp()] != null);
-
-    return () => {document.onfullscreenchange = undefined};
-  });
-
-  return [isFullscreen, setFullscreen];
-}
-
-function getBrowserFullscreenElementProp() {
-  if (typeof document.fullscreenElement !== "undefined") {
-    return "fullscreenElement";
-  } else if (typeof document.mozFullScreenElement !== "undefined") {
-    return "mozFullScreenElement";
-  } else if (typeof document.msFullscreenElement !== "undefined") {
-    return "msFullscreenElement";
-  } else if (typeof document.webkitFullscreenElement !== "undefined") {
-    return "webkitFullscreenElement";
-  } else {
-    throw new Error("fullscreenElement is not supported by this browser");
-  }
-}
 
 function VideoPlayer(props) {
   const {source, className} = props;
