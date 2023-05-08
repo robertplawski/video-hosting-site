@@ -85,7 +85,7 @@ function VideoPlayer(props) {
           </div> 
         : <></> 
       }
-      <div  ref={selfRef}  className={`relative  aspect-ratio-video min-w-max bg-black overflow-hidden rounded-xl ${className}`} onClick={closeContextMenu} onContextMenu={showContextMenu} onMouseMove={mouseMove}>
+      <div  ref={selfRef}  className={`relative  aspect-ratio-video min-w-max bg-black overflow-hidden ${!isFullscreen ? "rounded-2xl" : ""} ${className}`} onClick={closeContextMenu} onContextMenu={showContextMenu} onMouseMove={mouseMove}>
         <video ref={videoRef} className="w-full" preload>
           <source src={source} type="video/mp4"/>
         </video>
