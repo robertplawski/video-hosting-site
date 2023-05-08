@@ -52,7 +52,7 @@ export function useVideoLoaded(elRef) {
   useLayoutEffect(() => {
     elRef.current.onwaiting = () =>
       setIsLoaded(false);
-    elRef.current.oncanplay= () =>
+    elRef.current.oncanplay = () =>
       setIsLoaded(true);
     elRef.current.onstalled = () =>
       setIsLoaded(false);

@@ -75,6 +75,7 @@ function VideoPlayer(props) {
   }
   // SHOW CONTEXT MENU ON RIGHT CLICK AND WHEN CONTEXT MENU IS SHOWN DO NOT PREVENT DEFAULT AND HIDE COINTEXT MENU
   // ON CLICK CLOSE CONTEXT MENU
+  // ADD ACCESIBLE ELEMENT THAT ALLOWS FOR KEYBOARD CONTROL
   return (
     <>
       { isContextMenuShowing ? 
@@ -84,7 +85,7 @@ function VideoPlayer(props) {
           </div> 
         : <></> 
       }
-      <div  ref={selfRef}  className={`relative aspect-ratio-video min-w-max bg-black overflow-hidden rounded-xl ${className}`} onClick={closeContextMenu} onContextMenu={showContextMenu} onMouseMove={mouseMove}>
+      <div  ref={selfRef}  className={`relative  aspect-ratio-video min-w-max bg-black overflow-hidden rounded-xl ${className}`} onClick={closeContextMenu} onContextMenu={showContextMenu} onMouseMove={mouseMove}>
         <video ref={videoRef} className="w-full" preload>
           <source src={source} type="video/mp4"/>
         </video>
@@ -99,22 +100,23 @@ function VideoPlayer(props) {
 
         </div>
 
-        <div className={`hover:opacity-100 peer-hover:${!isFullscreen ? 'opacity-100' : ''} ${isPaused ? 'opacity-100' : 'opacity-0'} transition gap-2 absolute bottom-0 w-full flex items-center justify-end flex-col px-4 py-2 bg-gradient-to-t from-black`}>
+        <div className={`hover:opacity-100 peer-hover:${!isFullscreen ? 'opacity-100' : ''} ${isPaused ? 'opacity-100' : 'opacity-0'} transition gap-0 absolute bottom-0 w-full flex items-center justify-end flex-col p-4 bg-gradient-to-t from-black`}>
           <VideoProgressBar currentTimestamp={currentTimestamp} duration={duration} videoRef = {videoRef} setCurrentTimestamp = {setCurrentTimeStamp}/>
-          <div className="text-white w-full gap-4 px-4 py-2 flex items-center text-sm">
+          <div className="text-white w-full gap-2 px-4 py-0 flex items-center text-sm">
             <Tooltip caption="Play">
               <SwitchButton className="bg-blue-500 p-1 rounded-2xl" onClick={playPause} statement={isPaused} enabledIcon = {<IconPlayerPlayFilled/>} disabledIcon = {<IconPlayerPauseFilled/>} />
             </Tooltip>
-            <div className="group/volume flex gap-2 flex justify-center items-center">
+            <div className="group/volume flex gap-0 flex justify-center items-center">
               <Tooltip caption="Volume">
-                <IconVolume/>         
+                <SwitchButton className="group/volume" statement={true} enabledIcon = {<IconVolume/>}/>
               </Tooltip>
-              <input type="range" onChange={changeVolume} step={1}  min={0} max={100} className="group-hover/volume:w-16 group-hover/volume:flex group-hover/volume:visible invisible transition-all duration-100 w-0"/>
+              <input type="range" onChange={changeVolume} step={1}  min={0} max={100} className="group-hover/volume:w-16 focus/volume:w-16 focus/volume:opacity-100 group-hover/volume:opacity-100 opacity-0 transition-all duration-100 w-0 rounded-2xl"/>
             </div>
 
-            <p className="whitespace-nowrap flex justify-center items-center">{parseTime(currentTimestamp)} / {parseTime(duration)}</p>
+            <div className="whitespace-nowrap flex justify-center items-center">{parseTime(currentTimestamp)} / {parseTime(duration)}</div>
 
-            <div className="flex flex-1"/>         
+            <div className="flex flex-1"/>     
+
             <Tooltip caption="Loop">
               <SwitchButton onClick={toggleLoop} statement={isLooping} enabledIcon = {<IconRepeat/>} disabledIcon = {<IconRepeatOff/>} />
             </Tooltip>
