@@ -1,3 +1,5 @@
+import { useState, useLayoutEffect } from "react";
+
 export default function useFullscreenStatus(elRef) {
   const [isFullscreen, setIsFullscreen] = useState(
     document[getBrowserFullscreenElementProp()] != null
@@ -16,7 +18,7 @@ export default function useFullscreenStatus(elRef) {
       });
   };
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     document.onfullscreenchange = () =>
       setIsFullscreen(document[getBrowserFullscreenElementProp()] != null);
 
