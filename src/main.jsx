@@ -10,7 +10,7 @@ import '/src/index.css'
 
 const router = createBrowserRouter([
   {
-    path: "/VideoHostingSite/",
+    path: "/video-hosting-site/",
     element: <App/>
   }
 ]);
