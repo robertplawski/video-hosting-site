@@ -9,9 +9,9 @@ export function VideoProgressBar (props){
   const [mousePos, setMousePos] = useState({x:0,y:0});
   const [isMouseDown, setMouseDown] = useState(false);
   const [size, setSize] = useResize(selfRef);
-  
+
   // SET CLIENT WIDTH ON RESIZE BECAUSE IT BREAKS
-  useEffect(()=>setSize());
+ 
   useEffect(()=>{
       if(isMouseDown) {setCurrentTimestamp(mousePos.x/size.width*duration);}
   }, [mousePos, isMouseDown, duration, size, setCurrentTimestamp]);

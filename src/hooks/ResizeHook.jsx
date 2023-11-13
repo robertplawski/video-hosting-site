@@ -1,20 +1,24 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 
 export function useResize(elRef) {
-  const [size, setElSize] = useState({width: 0, height: 0});
+  const [size, setElSize] = useState({width: 100, height: 0});
 
   const setSize = () => {
     if (elRef.current == null) return;
     setElSize({width: elRef.current.clientWidth, height: elRef.current.clientHeight})
   };
 
-  useLayoutEffect(() => {
+  useEffect(()=>{
+    setElSize({width: elRef.current.clientWidth, height: elRef.current.clientHeight})
+  },[])
+
+  useEffect(() => {
     window.onresize = () => 
       setElSize({width: elRef.current.clientWidth, height: elRef.current.clientHeight})
     
 
     return () => {document.onresize = undefined;};
-  });
+  }, [elRef]);
 
   return [size, setSize];
 }

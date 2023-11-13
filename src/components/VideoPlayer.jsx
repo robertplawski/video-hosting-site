@@ -6,6 +6,9 @@ import { VideoProgressBar } from "/src/components/VideoProgressBar.jsx"
 import useFullscreenStatus  from "/src/hooks/FullscreenHook.jsx";
 import { useVideoPause, useVideoDuration, useVideoTimestamp, useVideoLoaded, useVideoCanPlayThrough, useVideoEnded} from "/src/hooks/VideoHooks.jsx"
 import {parseTime} from "/src/utils/timestampUtils.jsx"
+import {Slider} from "/src/components/Slider.jsx";
+
+
 // TODO
 // PLEASE ADD KEYBOARD CONTROL
 // PLEASE CREATE CUSTOM HOOKS FOR VIDEO REFERENCE
@@ -70,8 +73,12 @@ function VideoPlayer(props) {
   const mouseMove = (e) => {
     if(!isContextMenuShowing) setMousePos({x: e.clientX, y: e.clientY})
   }
-  const changeVolume = (e) => {
-    videoRef.current.volume = e.target.value/100;
+  const changeVolume = (val) => {
+    videoRef.current.volume = val/100;
+  }
+  const getVolume = () => {
+    if (!videoRef.current) return;
+    return videoRef.current.volume;
   }
   // SHOW CONTEXT MENU ON RIGHT CLICK AND WHEN CONTEXT MENU IS SHOWN DO NOT PREVENT DEFAULT AND HIDE COINTEXT MENU
   // ON CLICK CLOSE CONTEXT MENU
@@ -106,11 +113,11 @@ function VideoPlayer(props) {
             <Tooltip caption="Play">
               <SwitchButton className="bg-blue-500 p-1 rounded-2xl" onClick={playPause} statement={isPaused} enabledIcon = {<IconPlayerPlayFilled/>} disabledIcon = {<IconPlayerPauseFilled/>} />
             </Tooltip>
-            <div className="group/volume flex gap-0 flex justify-center items-center">
-              <Tooltip caption="Volume">
+            <div className="group/volume flex gap-2 flex justify-center items-center">
+              <Tooltip caption={getVolume()}>
                 <SwitchButton className="group/volume" statement={true} enabledIcon = {<IconVolume/>}/>
               </Tooltip>
-              <input type="range" onChange={changeVolume} step={1}  min={0} max={100} className="group-hover/volume:w-16 focus/volume:w-16 focus/volume:opacity-100 group-hover/volume:opacity-100 opacity-0 transition-all duration-100 w-0 rounded-2xl"/>
+              <Slider onChange={(e)=> alert(e.details.value)} className=" group-hover/volume:w-16 focus/volume:w-16 focus/volume:opacity-100 group-hover/volume:opacity-100 opacity-0 transition-all duration-100 w-0 rounded-2xl"/>
             </div>
 
             <div className="whitespace-nowrap flex justify-center items-center">{parseTime(currentTimestamp)} / {parseTime(duration)}</div>
