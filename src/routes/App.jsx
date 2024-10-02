@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="flex justify-center items-center h-screen flex-col gap-4">
       <h1>Simple react video player</h1>
-      <VideoPlayer className="w-3/5" source="https://ia600300.us.archive.org/17/items/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.ogv"/>
+      <VideoPlayer className="w-3/5" source="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"/>
     </div>
   )
 }
